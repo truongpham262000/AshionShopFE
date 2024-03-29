@@ -1,0 +1,96 @@
+<form #frm="ngForm" (ngSubmit)="save()">
+    <nb-card>
+        <nb-card-header class="nb-card-header">
+            <div class="row">
+                <div class="col-sm-12 col-md-12 col-xs-12 col-lg-12">
+                    <label *ngIf="dataRef.actionType === statusAction.create">Thêm mới {{ titleHeader }}</label>
+                    <label *ngIf="dataRef.actionType === statusAction.edit">Cập nhật {{ titleHeader }}</label>
+                    <label *ngIf="dataRef.actionType === statusAction.detail">Chi tiết {{ titleHeader }}</label>
+                </div>
+            </div>
+        </nb-card-header>
+        <nb-card-body>
+            <div class="row" style="overflow: auto !important;max-height: 450px !important;">
+                <div class="col-sm-3 col-md-3 col-xs-3 col-lg-3">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12 col-xs-12 col-lg-12">
+                            <img [src]="imageData" alt="" style="width:100%;height:285px;border:solid 2px silver"
+                                id="imageLogo" *ngIf="imageData">
+                            <img src="../../../../../assets/images/eva.png" alt=""
+                                style="width:100%;height:285px;border:solid 2px silver" id="imageData"
+                                *ngIf="!imageData">
+                        </div>
+                        <div class="col-sm-12 col-md-12 col-xs-12 col-lg-12"
+                            *ngIf="dataRef.actionType !== statusAction.detail">
+                            <div class="input-group">
+                                <input type="file" class="form-control" id="loadimage"
+                                    (change)="handleUpload($event)" />
+                                &nbsp;
+                                <div style="display: flex; justify-content: center; align-items: center;">
+                                    <ngx-icon-delete title="Xóa ảnh" style="cursor: pointer;"
+                                        (click)="DeleteImg()"></ngx-icon-delete>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-8 col-md-8 col-xs-9 col-lg-9">
+                    <div class="col-sm-12 col-md-12 col-xs-12 col-lg-12 d-flex p-0">
+                        <div class="col-sm-6 col-md-6 col-xs-6 col-lg-6">
+                            <div class="form-group">
+                                <label class="control-label required">Tiêu đề</label>
+                                <input type="text" class="form-control" [(ngModel)]="target.title" name="title"
+                                    #title="ngModel" placeholder="--- Tiêu đề ---" maxlength="200" required
+                                    [disabled]="dataRef.actionType === statusAction.detail" required />
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-6 col-xs-6 col-lg-6">
+                            <div class="form-group">
+                                <label class="control-label">Mô tả</label>
+                                <input type="text" class="form-control" name="mota" [(ngModel)]="target.mota"
+                                    #mota="ngModel" placeholder="--- Mô tả ---"
+                                    [disabled]="dataRef.actionType === statusAction.detail" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-12 col-xs-12 col-lg-12 d-flex p-0">
+                        <div class="col-sm-6 col-md-6 col-xs-6 col-lg-6">
+                            <div class="form-group">
+                                <label class="control-label">Người tạo</label>
+                                <input type="text" class="form-control" name="nguoiTao" placeholder="--- Người tạo ---"
+                                    [(ngModel)]="target.nguoiTao" #nguoiTao="ngModel" maxlength="200"
+                                    [disabled]="dataRef.actionType === statusAction.detail" />
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-6 col-xs-6 col-lg-6">
+                            <div class="form-group">
+                                <label class="control-label required">Trạng thái</label>
+                                <ng-select [items]="trangThai" bindLabel="text" bindValue="value"
+                                    [(ngModel)]="target.status" name="status"
+                                    [disabled]="dataRef.actionType === statusAction.detail">
+                                </ng-select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-6 col-xs-6 col-lg-6">
+                        <div class="form-group">
+                            <label class="control-label">Ngày tạo</label>
+                            <input type="date" class="form-control" name="createDate" placeholder="--- Ngày tạo ---"
+                                [(ngModel)]="target.createDate" #createDate="ngModel"
+                                [disabled]="dataRef.actionType === statusAction.detail" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nb-card-body>
+        <nb-card-footer class="text-right">
+            <div class="row">
+                <div class="col-sm-12 col-md-12 col-xs-12 col-lg-12 text-right">
+                    <ngx-btn-submit [disabled]="frm.invalid"
+                        *ngIf="dataRef.actionType !== statusAction.detail"></ngx-btn-submit>&nbsp;&nbsp;
+                    <ngx-btn-close (click)="closeDialog(true)"></ngx-btn-close>
+                </div>
+            </div>
+        </nb-card-footer>
+    </nb-card>
+</form>

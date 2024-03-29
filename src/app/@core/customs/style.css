@@ -1,0 +1,501 @@
+nb-menu .menu-item a .menu-title {
+  flex: 1 !important;
+}
+
+.ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-selected,
+.ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-marked {
+  background-color: antiquewhite !important;
+}
+
+.ng-dropdown-panel .ng-dropdown-panel-items .ng-option {
+  border-bottom: 1px solid #d4d4d4 !important;
+  white-space: unset !important;
+}
+
+.ng-select.ng-select-single .ng-select-container {
+  height: 50px !important;
+}
+
+.required:after {
+  content: ' (*)' !important;
+  color: red !important;
+}
+
+td > i:hover {
+  cursor: pointer;
+  color: blue;
+}
+
+table th:hover {
+  cursor: pointer;
+}
+
+.ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-marked {
+  white-space: pre-line;
+}
+
+/* Set width for scroll  */
+.cdk-global-overlay-wrapper > .cdk-overlay-pane {
+  overflow-y: scroll;
+}
+
+.cdk-global-overlay-wrapper > .cdk-overlay-pane::-webkit-scrollbar {
+  width: 0;
+}
+
+/* Set style for button table */
+
+table td button {
+  padding: 3px 10px 3px 10px !important;
+}
+
+table td {
+  vertical-align: middle !important;
+}
+
+.nb-theme-default nb-menu .menu-item > .menu-items {
+  padding: 0px !important;
+  padding-left: 10px !important;
+}
+
+.label-upload-file {
+  background-color: #84ab87;
+  color: white;
+  padding: 0.2rem 0.5rem;
+  font-family: sans-serif;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+.input-group-append button {
+  border-radius: 0;
+  border-left: 0px;
+}
+
+.fa-info {
+  color: #17a2b8;
+}
+
+.fa-trash-alt {
+  color: #bd2130;
+}
+
+.fa-pen {
+  color: #ffc107;
+}
+/* .nb-theme-default nb-menu .menu-item>.menu-items>.menu-item a.active {
+background-color: #ffffff !important;
+border-color: #40dc7e;
+} */
+
+.container {
+  max-width: 1300px;
+}
+
+nb-menu .menu-item a .menu-title {
+  flex: 1 !important;
+}
+
+.ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-selected,
+.ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-marked {
+  background-color: antiquewhite !important;
+}
+
+.ng-dropdown-panel .ng-dropdown-panel-items .ng-option {
+  border-bottom: 1px solid #d4d4d4 !important;
+}
+
+.ng-select.ng-select-single .ng-select-container {
+  height: 50px !important;
+}
+
+td > i:hover {
+  cursor: pointer;
+  color: blue;
+}
+
+table th:hover {
+  cursor: pointer;
+}
+
+.ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-marked {
+  white-space: pre-line;
+}
+
+/* Set width for scroll  */
+.cdk-global-overlay-wrapper > .cdk-overlay-pane {
+  overflow-y: scroll;
+}
+
+.cdk-global-overlay-wrapper > .cdk-overlay-pane::-webkit-scrollbar {
+  width: 0;
+}
+
+/* Set style for button table */
+
+table td button {
+  padding: 3px 10px !important;
+}
+
+table td {
+  vertical-align: middle !important;
+}
+
+.nb-theme-default nb-menu .menu-item > .menu-items {
+  padding: 0 0 0 10px !important;
+}
+
+.label-upload-file {
+  background-color: #84ab87;
+  color: white;
+  padding: 0.2rem 0.5rem;
+  font-family: sans-serif;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+.input-group-append button {
+  border-radius: 0;
+  border-left: 0;
+}
+
+.fa-info {
+  color: #17a2b8;
+}
+
+.fa-trash-alt {
+  color: #bd2130;
+}
+
+.fa-pen {
+  color: #ffc107;
+}
+
+.mat-tab-body-wrapper {
+  margin-top: 15px;
+}
+
+/* .cdk-overlay-pane {
+padding-top: 50px;
+padding-bottom: 50px;
+} */
+
+.fieldset {
+  border: solid 1px;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.legend {
+  position: absolute;
+  margin-top: -13px;
+  margin-left: 10px;
+  background-color: white;
+}
+/* .nb-theme-default nb-menu .menu-item>.menu-items>.menu-item a.active {
+background-color: #ffffff !important;
+border-color: #40dc7e;
+} */
+
+.margin-right {
+  margin-right: 1em;
+}
+
+.margin-left {
+  margin-left: 1em;
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+.file-x {
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.file-info {
+  max-height: 100px;
+  overflow-y: auto;
+}
+
+.file-info ul {
+  padding: 0;
+}
+
+.file-info li {
+  list-style: none;
+}
+nb-menu .menu-item a .menu-title {
+  flex: 1 !important;
+}
+
+.ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-selected,
+.ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-marked {
+  background-color: antiquewhite !important;
+}
+
+.ng-dropdown-panel .ng-dropdown-panel-items .ng-option {
+  border-bottom: 1px solid #d4d4d4 !important;
+}
+
+.ng-select.ng-select-single .ng-select-container {
+  height: 50px !important;
+}
+
+td > i:hover {
+  cursor: pointer;
+  color: blue;
+}
+
+table th:hover {
+  cursor: pointer;
+}
+
+.ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-marked {
+  white-space: pre-line;
+}
+
+/* Set width for scroll  */
+.cdk-global-overlay-wrapper > .cdk-overlay-pane {
+  overflow-y: scroll;
+}
+
+.cdk-global-overlay-wrapper > .cdk-overlay-pane::-webkit-scrollbar {
+  width: 0;
+}
+
+/* Set style for button table */
+
+table td button {
+  padding: 3px 10px 3px 10px !important;
+}
+
+table td {
+  vertical-align: middle !important;
+}
+
+.nb-theme-default nb-menu .menu-item > .menu-items {
+  padding: 0px !important;
+  padding-left: 10px !important;
+}
+
+.label-upload-file {
+  background-color: #84ab87;
+  color: white;
+  padding: 0.2rem 0.5rem;
+  font-family: sans-serif;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+.input-group-append button {
+  border-radius: 0;
+  border-left: 0px;
+}
+
+.fa-info {
+  color: #17a2b8;
+}
+
+.fa-trash-alt {
+  color: #bd2130;
+}
+
+.fa-pen {
+  color: #ffc107;
+}
+
+.mat-tab-body-wrapper {
+  margin-top: 15px;
+}
+
+/* .cdk-overlay-pane {
+padding-top: 50px;
+padding-bottom: 50px;
+} */
+
+.fieldset {
+  border: solid 1px;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.legend {
+  position: absolute;
+  margin-top: -13px;
+  margin-left: 10px;
+  background-color: white;
+}
+/* .nb-theme-default nb-menu .menu-item>.menu-items>.menu-item a.active {
+background-color: #ffffff !important;
+border-color: #40dc7e;
+} */
+
+fieldset {
+  margin-top: 12px;
+  border: 1px solid #ced4da;
+  padding: 12px;
+  -moz-border-radius: 8px;
+  border-radius: 8px;
+}
+
+legend {
+  color: #222b45;
+  font-style: italic;
+  padding-left: 12px;
+  padding-right: 12px;
+  width: auto;
+  font-size: medium;
+  font-weight: bold;
+}
+
+.mat-dialog-container .mat-tab-body-content {
+  overflow: unset;
+  overflow-x: hidden;
+  cursor: all-scroll;
+}
+
+.tieu-de-bv {
+  color: #227aff !important;
+  font-family: "Roboto-Bold" !important;
+}
+
+table {
+  background-color: #fff;
+}
+
+table thead {
+  background-color: #66ccff;
+}
+
+table th {
+  vertical-align: middle !important;
+}
+
+.nb-theme-default nb-layout .layout {
+  background-color: transparent !important;
+}
+
+.title-header {
+  color: #ff7214 !important;
+}
+
+.nb-theme-default nb-tabset nb-tab::-webkit-scrollbar {
+  width: 0.65rem;
+  height: 1rem;
+}
+
+.m-w-250 {
+  min-width: 250px;
+}
+
+.m-w-150 {
+  min-width: 150px;
+}
+
+.m-w-200 {
+  min-width: 200px;
+}
+
+.m-w-300 {
+  min-width: 300px;
+}
+
+.ml-10 {
+  margin-left: 10px;
+}
+
+
+fieldset {
+  margin-top: 12px;
+  border: 1px solid #ced4da;
+  padding: 12px;
+  -moz-border-radius: 8px;
+  border-radius: 8px;
+}
+
+legend {
+  color: #222b45;
+  font-style: italic;
+  padding-left: 12px;
+  padding-right: 12px;
+  width: auto;
+  font-size: medium;
+  font-weight: bold;
+}
+
+.mat-dialog-container .mat-tab-body-content {
+  overflow: unset;
+  overflow-x: hidden;
+  cursor: all-scroll;
+}
+
+.tieu-de-bv {
+  color: #227aff;
+  font-family: 'Roboto-Bold';
+}
+
+table {
+  background-color: #fff;
+}
+
+table thead {
+  background-color: #66ccff;
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 1;
+}
+
+.table-bordered thead th {
+  border-bottom-width: 1px;
+}
+
+table th {
+  vertical-align: middle !important;
+}
+
+.row {
+  font-family: 'Roboto' !important;
+  font-size: 0.915rem !important;
+}
+
+input {
+  font-family: 'Roboto' !important;
+  font-size: 0.915rem !important;
+  height: auto !important;
+}
+
+.control-label {
+  font-family: 'Roboto-Bold';
+}
+
+.nb-card-header h5 {
+  font-family: 'Roboto-Bold';
+  font-size: 1.215rem;
+  text-transform: uppercase;
+}
+
+.row-title-data {
+  font-family: 'Roboto-Bold';
+  font-size: 0.915rem;
+  color: #227aff;
+}
+
+.row-date-data {
+  font-family: 'Roboto';
+  font-size: 0.815rem;
+  font-style: italic;
+  color: #7f7f7f;
+}
+
+.row-note-data {
+  font-family: 'Roboto';
+  font-size: 0.875rem;
+}

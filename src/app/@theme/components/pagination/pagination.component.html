@@ -1,0 +1,72 @@
+<ul class="pagination">
+  <li class="page-item">
+    <div class="d-flex flex-nowrap px-2">
+        <nb-select
+            placeholder="Số dòng"
+            [(ngModel)]="selectRecordInPage"
+            [ngModelOptions]="{ standalone: true }"
+            (selectedChange)="changePerPage()"
+          >
+            <nb-option *ngFor="let option of lstRecordInPage" [value]="option.Value">
+              {{ option.Text }}
+            </nb-option>
+          </nb-select>
+    </div>
+  </li>
+  <li class="page-item">
+    <a
+      class="page-link page-link-customs"
+      href="javascript:void(0);"
+      (click)="pageFirst()"
+      >««</a
+    >
+  </li>
+  <li class="page-item">
+    <a
+      class="page-link page-link-customs"
+      href="javascript:void(0);"
+      (click)="previous()"
+      >«</a
+    >
+  </li>
+  <li class="ngb-custom-pages-item" style="border-right: 1px solid #dddddd">
+    <div class="d-flex flex-nowrap px-2">
+      <label
+        id="paginationInputLabel"
+        for="paginationInput"
+        class="col-form-label mr-2 ml-1"
+        >Trang</label
+      >
+      <input
+        type="text"
+        inputmode="numeric"
+        pattern="[0-9]*"
+        id="paginationInput"
+        [(ngModel)]="currentPage"
+        aria-labelledby="paginationInputLabel paginationDescription"
+        class="form-control custom-pages-input"
+        style="width: 5rem"
+        (blur)="changeNumberPage()"
+      />
+      <span id="paginationDescription" class="col-form-label text-nowrap px-2">
+        trong {{ totalPages }}</span
+      >
+    </div>
+  </li>
+  <li class="page-item">
+    <a
+      class="page-link page-link-customs"
+      href="javascript:void(0);"
+      (click)="next()"
+      >»</a
+    >
+  </li>
+  <li class="page-item">
+    <a
+      class="page-link page-link-customs"
+      href="javascript:void(0);"
+      (click)="pageLast()"
+      >»»</a
+    >
+  </li>
+</ul>

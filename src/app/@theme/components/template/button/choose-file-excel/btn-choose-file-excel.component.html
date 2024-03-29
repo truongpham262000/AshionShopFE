@@ -1,0 +1,8 @@
+<ng-container *ngIf="multiple; else elseTemplate">
+    <input type="file" id="{{idFile}}" accept=".xlsx, .xls, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" hidden multiple>
+    <label class="btn btn-{{color}}" style="cursor: pointer;" for="{{idFile}}">{{lbl.chooseImportFile}}</label>
+</ng-container>
+<ng-template #elseTemplate>
+    <input type="file" id="{{idFile}}" accept=".xlsx, .xls, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" hidden>
+    <label class="btn btn-{{color}}" style="cursor: pointer;" for="{{idFile}}">{{lbl.chooseImportFile}}</label>
+</ng-template>

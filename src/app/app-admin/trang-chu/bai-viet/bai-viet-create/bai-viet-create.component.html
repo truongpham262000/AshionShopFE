@@ -1,0 +1,178 @@
+<form #frm="ngForm" (ngSubmit)="save()">
+    <nb-card>
+        <nb-card-header class="nb-card-header">
+            <div class="row">
+                <div class="col-sm-12 col-md-12 col-xs-12 col-lg-12">
+                    <label *ngIf="dataRef.actionType === statusAction.create">Thêm mới {{ titleHeader }}</label>
+                    <label *ngIf="dataRef.actionType === statusAction.edit">Cập nhật {{ titleHeader }}</label>
+                    <label *ngIf="dataRef.actionType === statusAction.detail">Chi tiết {{ titleHeader }}</label>
+                </div>
+            </div>
+        </nb-card-header>
+        <nb-card-body>
+            <div class="row" style="overflow: auto !important;max-height: 450px !important;">
+                <div class="col-sm-3 col-md-3 col-xs-3 col-lg-3">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12 col-xs-12 col-lg-12">
+                            <img [src]="imageData" alt="" style="width:100%;height:285px;border:solid 2px silver"
+                                id="imageLogo" *ngIf="imageData">
+                            <img src="../../../../../assets/images/eva.png" alt=""
+                                style="width:100%;height:285px;border:solid 2px silver" id="imageData"
+                                *ngIf="!imageData">
+                        </div>
+                        <div class="col-sm-12 col-md-12 col-xs-12 col-lg-12"
+                            *ngIf="dataRef.actionType !== statusAction.detail">
+                            <div class="input-group">
+                                <input type="file" class="form-control" id="loadimage"
+                                    (change)="handleUpload($event)" />
+                                &nbsp;
+                                <div style="display: flex; justify-content: center; align-items: center;">
+                                    <ngx-icon-delete title="Xóa ảnh" style="cursor: pointer;"
+                                        (click)="DeleteImg()"></ngx-icon-delete>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-8 col-md-8 col-xs-9 col-lg-9">
+                    <div class="col-sm-12 col-md-12 col-xs-12 col-lg-12 d-flex p-0">
+                        <div class="col-sm-6 col-md-6 col-xs-6 col-lg-6">
+                            <div class="form-group">
+                                <label class="control-label required">Tiêu đề</label>
+                                <input type="text" class="form-control" [(ngModel)]="target.tieuDe" name="tieuDe"
+                                    #tieuDe="ngModel" placeholder="--- Tiêu đề ---" maxlength="200" required
+                                    [disabled]="dataRef.actionType === statusAction.detail" required />
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-6 col-xs-6 col-lg-6">
+                            <div class="form-group">
+                                <label class="control-label">Mô tả</label>
+                                <input type="text" class="form-control" name="mota"
+                                    [(ngModel)]="target.mota" #mota="ngModel"
+                                    placeholder="--- Mô tả ---"
+                                    [disabled]="dataRef.actionType === statusAction.detail" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-12 col-xs-12 col-lg-12 d-flex p-0">
+                        <div class="col-sm-6 col-md-6 col-xs-6 col-lg-6">
+                            <div class="form-group">
+                                <label class="control-label">Người tạo</label>
+                                <input type="text" class="form-control" name="nguoiTao" placeholder="--- Người tạo ---"
+                                    [(ngModel)]="target.nguoiTao" #nguoiTao="ngModel" maxlength="200"
+                                    [disabled]="dataRef.actionType === statusAction.detail" />
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-6 col-xs-6 col-lg-6">
+                            <div class="form-group">
+                                <label class="control-label required">Trạng thái</label>
+                                <ng-select [items]="trangThai" bindLabel="text" bindValue="value"
+                                    [(ngModel)]="target.trangThai" name="trangThai"
+                                    [disabled]="dataRef.actionType === statusAction.detail">
+                                </ng-select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-12 col-xs-12 col-lg-12 d-flex p-0">
+                        <div class="col-sm-6 col-md-6 col-xs-6 col-lg-6">
+                            <div class="form-group">
+                                <label class="control-label">Ngày tạo</label>
+                                <input type="date" class="form-control" name="createDate" placeholder="--- Ngày tạo ---"
+                                    [(ngModel)]="target.createDate" #createDate="ngModel"
+                                    [disabled]="dataRef.actionType === statusAction.detail" />
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-6 col-xs-6 col-lg-6">
+                            <div class="form-group">
+                                <label class="control-label required">Danh mục</label>
+                                <ng-select [items]="trangThai" bindLabel="text" bindValue="value" [(ngModel)]="target.categoryId"
+                                    name="categoryId" [disabled]="dataRef.actionType === statusAction.detail">
+                                </ng-select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-12 col-xs-12 col-lg-12">
+                        <div class="form-group">
+                            <label class="control-label">Nội dung</label>
+                            <kendo-editor name="noiDung" [(ngModel)]="target.noiDung"
+                                #noiDung="ngModel" [disabled]="dataRef.actionType === statusAction.detail"
+                                style="height: 450px;">
+                                <kendo-toolbar>
+                                    <kendo-toolbar-buttongroup>
+                                        <kendo-toolbar-button kendoEditorBoldButton></kendo-toolbar-button>
+                                        <kendo-toolbar-button kendoEditorItalicButton></kendo-toolbar-button>
+                                        <kendo-toolbar-button kendoEditorUnderlineButton></kendo-toolbar-button>
+                                        <kendo-toolbar-button kendoEditorStrikethroughButton></kendo-toolbar-button>
+                                    </kendo-toolbar-buttongroup>
+                                    <kendo-toolbar-buttongroup>
+                                        <kendo-toolbar-button kendoEditorSubscriptButton></kendo-toolbar-button>
+                                        <kendo-toolbar-button kendoEditorSuperscriptButton></kendo-toolbar-button>
+                                    </kendo-toolbar-buttongroup>
+                                    <kendo-toolbar-buttongroup>
+                                        <kendo-toolbar-button kendoEditorAlignLeftButton></kendo-toolbar-button>
+                                        <kendo-toolbar-button kendoEditorAlignCenterButton></kendo-toolbar-button>
+                                        <kendo-toolbar-button kendoEditorAlignRightButton></kendo-toolbar-button>
+                                        <kendo-toolbar-button kendoEditorAlignJustifyButton></kendo-toolbar-button>
+                                    </kendo-toolbar-buttongroup>
+                                    <kendo-toolbar-dropdownlist kendoEditorFormat></kendo-toolbar-dropdownlist>
+                                    <kendo-toolbar-dropdownlist kendoEditorFontSize></kendo-toolbar-dropdownlist>
+                                    <kendo-toolbar-dropdownlist kendoEditorFontFamily></kendo-toolbar-dropdownlist>
+                                    <kendo-toolbar-colorpicker kendoEditorForeColor></kendo-toolbar-colorpicker>
+                                    <kendo-toolbar-colorpicker kendoEditorBackColor
+                                        view="gradient"></kendo-toolbar-colorpicker>
+                                    <kendo-toolbar-buttongroup>
+                                        <kendo-toolbar-button
+                                            kendoEditorInsertUnorderedListButton></kendo-toolbar-button>
+                                        <kendo-toolbar-button kendoEditorInsertOrderedListButton></kendo-toolbar-button>
+                                        <kendo-toolbar-button kendoEditorIndentButton></kendo-toolbar-button>
+                                        <kendo-toolbar-button kendoEditorOutdentButton></kendo-toolbar-button>
+                                    </kendo-toolbar-buttongroup>
+                                    <kendo-toolbar-button kendoEditorBlockquoteButton></kendo-toolbar-button>
+                                    <kendo-toolbar-button kendoEditorSelectAllButton></kendo-toolbar-button>
+                                    <kendo-toolbar-buttongroup>
+                                        <kendo-toolbar-button kendoEditorUndoButton></kendo-toolbar-button>
+                                        <kendo-toolbar-button kendoEditorRedoButton></kendo-toolbar-button>
+                                    </kendo-toolbar-buttongroup>
+                                    <kendo-toolbar-buttongroup>
+                                        <kendo-toolbar-button kendoEditorCreateLinkButton></kendo-toolbar-button>
+                                        <kendo-toolbar-button kendoEditorUnlinkButton></kendo-toolbar-button>
+                                    </kendo-toolbar-buttongroup>
+                                    <kendo-toolbar-button kendoEditorInsertFileButton></kendo-toolbar-button>
+                                    <kendo-toolbar-button kendoEditorInsertImageButton></kendo-toolbar-button>
+                                    <kendo-toolbar-button kendoEditorViewSourceButton></kendo-toolbar-button>
+                                    <kendo-toolbar-button kendoEditorCleanFormattingButton></kendo-toolbar-button>
+                                    <kendo-editor-insert-table-button></kendo-editor-insert-table-button>
+                                    <kendo-toolbar-buttongroup>
+                                        <kendo-toolbar-button kendoEditorAddColumnBeforeButton></kendo-toolbar-button>
+                                        <kendo-toolbar-button kendoEditorAddColumnAfterButton></kendo-toolbar-button>
+                                        <kendo-toolbar-button kendoEditorAddRowBeforeButton></kendo-toolbar-button>
+                                        <kendo-toolbar-button kendoEditorAddRowAfterButton></kendo-toolbar-button>
+                                    </kendo-toolbar-buttongroup>
+                                    <kendo-toolbar-buttongroup>
+                                        <kendo-toolbar-button kendoEditorDeleteColumnButton></kendo-toolbar-button>
+                                        <kendo-toolbar-button kendoEditorDeleteRowButton></kendo-toolbar-button>
+                                        <kendo-toolbar-button kendoEditorDeleteTableButton></kendo-toolbar-button>
+                                    </kendo-toolbar-buttongroup>
+                                    <kendo-toolbar-buttongroup>
+                                        <kendo-toolbar-button kendoEditorMergeCellsButton></kendo-toolbar-button>
+                                        <kendo-toolbar-button kendoEditorSplitCellButton></kendo-toolbar-button>
+                                    </kendo-toolbar-buttongroup>
+                                    <kendo-toolbar-button kendoEditorPrintButton></kendo-toolbar-button>
+                                </kendo-toolbar>
+                            </kendo-editor>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nb-card-body>
+        <nb-card-footer class="text-right">
+            <div class="row">
+                <div class="col-sm-12 col-md-12 col-xs-12 col-lg-12 text-right">
+                    <ngx-btn-submit [disabled]="frm.invalid"
+                        *ngIf="dataRef.actionType !== statusAction.detail"></ngx-btn-submit>&nbsp;&nbsp;
+                    <ngx-btn-close (click)="closeDialog(true)"></ngx-btn-close>
+                </div>
+            </div>
+        </nb-card-footer>
+    </nb-card>
+</form>

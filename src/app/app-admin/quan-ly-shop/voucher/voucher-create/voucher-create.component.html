@@ -1,0 +1,109 @@
+<form #frm="ngForm" (ngSubmit)="save()">
+   <nb-card>
+      <nb-card-header class="nb-card-header">
+         <div class="row">
+            <div class="col-sm-12 col-md-12 col-xs-12 col-lg-12">
+               <label class="text-uppercase" *ngIf="dataRef.actionType === statusAction.create">Thêm mới
+                  {{ titleHeader }}</label>
+               <label class="text-uppercase" *ngIf="dataRef.actionType === statusAction.edit">Cập nhật
+                  {{ titleHeader }}</label>
+               <label class="text-uppercase" *ngIf="dataRef.actionType === statusAction.detail">Chi tiết
+                  {{ titleHeader }}</label>
+            </div>
+         </div>
+      </nb-card-header>
+      <nb-card-body>
+         <div class="row">
+            <div class="col-sm-12 col-md-12 col-xs-12 col-lg-12 d-flex p-0">
+               <div class="col-sm-6 col-md-6 col-xs-6 col-lg-6">
+                  <div class="form-group">
+                     <label class="control-label required">Mã giảm giá</label>
+                     <input type="text" placeholder="-- Mã giảm giá --" class="form-control" name="nameVoucher"
+                        [(ngModel)]="target.nameVoucher" #nameVoucher="ngModel" required
+                        [disabled]="dataRef.actionType === statusAction.detail" />
+                  </div>
+               </div>
+               <div class="col-sm-6 col-md-6 col-xs-6 col-lg-6">
+                  <div class="form-group">
+                     <label class="control-label required">Giảm phần trăm</label>
+                     <input type="text" currencyMask [options]="currencyMaskConfig" placeholder="-- Giảm phần trăm --" class="form-control" name="giamPhanTram"
+                        [(ngModel)]="target.giamPhanTram" #giamPhanTram="ngModel" required
+                        [disabled]="dataRef.actionType === statusAction.detail" />
+                  </div>
+               </div>
+            </div>
+            <div class="col-sm-12 col-md-12 col-xs-12 col-lg-12 d-flex p-0">
+               <div class="col-sm-6 col-md-6 col-xs-6 col-lg-6">
+                  <div class="form-group">
+                     <label class="control-label required">Giảm tiền</label>
+                     <input type="text" currencyMask [options]="currencyMaskConfig" placeholder="-- Giảm tiền --" class="form-control" name="giamTien"
+                        [(ngModel)]="target.giamTien" #giamTien="ngModel" required
+                        [disabled]="dataRef.actionType === statusAction.detail" />
+                  </div>
+               </div>
+               <div class="col-sm-6 col-md-6 col-xs-6 col-lg-6">
+                  <div class="form-group">
+                     <label class="control-label required">Số lượng</label>
+                     <input type="text" currencyMask [options]="currencyMaskConfig" placeholder="-- Số lượng --" class="form-control" name="soLuong"
+                        [(ngModel)]="target.soLuong" #soLuong="ngModel" required
+                        [disabled]="dataRef.actionType === statusAction.detail" />
+                  </div>
+               </div>
+            </div>
+            <div class="col-sm-12 col-md-12 col-xs-12 col-lg-12 d-flex p-0">
+               <div class="col-sm-6 col-md-6 col-xs-6 col-lg-6">
+                  <div class="form-group">
+                     <label class="control-label required">Ngày bắt đầu</label>
+                     <input type="date" placeholder="-- Ngày bắt đầu --" class="form-control" name="startDate"
+                        [(ngModel)]="target.startDate" #startDate="ngModel" required
+                        [disabled]="dataRef.actionType === statusAction.detail" />
+                  </div>
+               </div>
+               <div class="col-sm-6 col-md-6 col-xs-6 col-lg-6">
+                  <div class="form-group">
+                     <label class="control-label required">Ngày kết thúc</label>
+                     <input type="date" placeholder="-- Ngày kết thúc --" class="form-control" name="endDate"
+                        [(ngModel)]="target.endDate" #endDate="ngModel" required
+                        [disabled]="dataRef.actionType === statusAction.detail" />
+                  </div>
+               </div>
+            </div>
+            <div class="col-sm-12 col-md-12 col-xs-12 col-lg-12 d-flex p-0">
+               <div class="col-sm-6 col-md-6 col-xs-6 col-lg-6">
+                  <div class="form-group">
+                     <label class="control-label">Người tạo</label>
+                     <input type="text" placeholder="-- Người tạo --" class="form-control" name="nguoiTao"
+                        [(ngModel)]="target.nguoiTao" #nguoiTao="ngModel"
+                        [disabled]="dataRef.actionType === statusAction.detail" />
+                  </div>
+               </div>
+               <div class="col-sm-6 col-md-6 col-xs-6 col-lg-6">
+                  <div class="form-group">
+                     <label class="control-label">Trạng thái</label>
+                     <ng-select [items]="lstStatus" bindLabel="text" bindValue="value" [(ngModel)]="target.trangThai"
+                        name="trangThai" appendTo="body" [disabled]="dataRef.actionType === statusAction.detail">
+                     </ng-select>
+                  </div>
+               </div>
+            </div>
+            <div class="col-sm-12 col-md-12 col-xs-12 col-lg-12">
+               <div class="form-group">
+                  <label class="control-label">Mô tả</label>
+                  <textarea type="text" rows="2" class="form-control" name="mota"
+                     [(ngModel)]="target.mota" #mota="ngModel"
+                     [disabled]="dataRef.actionType === statusAction.detail"></textarea>
+               </div>
+            </div>
+         </div>
+      </nb-card-body>
+      <nb-card-footer class="text-right">
+         <div class="row">
+            <div class="col-sm-12 col-md-12 col-xs-12 col-lg-12 text-right">
+               <ngx-btn-submit [disabled]="frm.invalid"
+                  *ngIf="dataRef.actionType !== statusAction.detail"></ngx-btn-submit>&nbsp;&nbsp;
+               <ngx-btn-close (click)="closeDialog(true)"></ngx-btn-close>
+            </div>
+         </div>
+      </nb-card-footer>
+   </nb-card>
+</form>

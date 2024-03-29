@@ -1,0 +1,122 @@
+<form #frm="ngForm" (ngSubmit)="save()">
+   <nb-card>
+      <nb-card-header class="nb-card-header">
+         <div class="row">
+            <div class="col-sm-12 col-md-12 col-xs-12 col-lg-12">
+               <label class="text-uppercase" *ngIf="dataRef.actionType === statusAction.create">Thêm mới
+                  {{ titleHeader }}</label>
+               <label class="text-uppercase" *ngIf="dataRef.actionType === statusAction.edit">Cập nhật
+                  {{ titleHeader }}</label>
+               <label class="text-uppercase" *ngIf="dataRef.actionType === statusAction.detail">Chi tiết
+                  {{ titleHeader }}</label>
+            </div>
+         </div>
+      </nb-card-header>
+      <nb-card-body>
+         <div class="row">
+            <div class="col-sm-12 col-md-12 col-xs-12 col-lg-12">
+               <kendo-expansionpanel [title]="'Người gửi: '+ tennguoigui">
+                  <div class="row">
+                     <div class="col-sm-3 col-md-3 col-xs-3 col-lg-3">
+                        <div class="form-group">
+                           <label class="control-label required">Tên người gửi</label>
+                           <ng-select [items]="lstShop" name="shopId"
+                              [(ngModel)]="target.shopId" bindLabel="nameShop" bindValue="shopId" required
+                              [disabled]="dataRef.actionType === statusAction.detail" (change)="changeGui()">
+                           </ng-select>
+                        </div>
+                     </div>
+                     <div class="col-sm-3 col-md-3 col-xs-3 col-lg-3">
+                        <div class="form-group">
+                           <label class="control-label">Tỉnh/Thành phố</label>
+                           <ng-select [items]="lstTinh" bindLabel="province_name" bindValue="province_id"
+                              [(ngModel)]="target.guiTinh" name="guiTinh" appendTo="body" [disabled]="true"
+                              (change)="getListDistrict()">
+                           </ng-select>
+                        </div>
+                     </div>
+                     <div class="col-sm-3 col-md-3 col-xs-3 col-lg-3">
+                        <div class="form-group">
+                           <label class="control-label">Quận/Huyện</label>
+                           <ng-select [items]="lstHuyen" bindLabel="district_name" bindValue="district_id"
+                              [(ngModel)]="target.guiHuyen" name="guiHuyen" appendTo="body" (change)="getListWard()"
+                              [disabled]="true">
+                           </ng-select>
+                        </div>
+                     </div>
+                     <div class="col-sm-3 col-md-3 col-xs-3 col-lg-3">
+                        <div class="form-group">
+                           <label class="control-label">Xã/Phường</label>
+                           <ng-select [items]="lstXa" bindLabel="ward_name" bindValue="ward_id"
+                              [(ngModel)]="target.guiXa" name="guiXa" appendTo="body" [disabled]="true">
+                           </ng-select>
+                        </div>
+                     </div>
+                     <div class="col-sm-12 col-md-12 col-xs-12 col-lg-12">
+                        <div class="form-group">
+                           <label class="control-label required">Chi tiết địa chỉ</label>
+                           <input class="form-control" type="text" name="guiDiaChi" [(ngModel)]="target.guiDiaChi" 
+                           [disabled]="dataRef.actionType === statusAction.detail"/>
+                        </div>
+                     </div>
+                  </div>
+               </kendo-expansionpanel>
+               <kendo-expansionpanel [title]="'Người nhận: '+ target.nhanTen">
+                  <div class="row">
+                     <div class="col-sm-3 col-md-3 col-xs-3 col-lg-3">
+                        <div class="form-group">
+                           <label class="control-label required">Tên người nhận</label>
+                           <input class="form-control" type="text" name="nhanTen" [(ngModel)]="target.nhanTen" 
+                           [disabled]="dataRef.actionType === statusAction.detail"/>
+                        </div>
+                     </div>
+                     <div class="col-sm-3 col-md-3 col-xs-3 col-lg-3">
+                        <div class="form-group">
+                           <label class="control-label required">Tỉnh/Thành phố</label>
+                           <ng-select [items]="lstTinh" required bindLabel="province_name" bindValue="province_id"
+                              [(ngModel)]="target.nhanTinh" name="nhanTinh" appendTo="body"
+                              (change)="getListDistrict()" [disabled]="dataRef.actionType === statusAction.detail">
+                           </ng-select>
+                        </div>
+                     </div>
+                     <div class="col-sm-3 col-md-3 col-xs-3 col-lg-3">
+                        <div class="form-group">
+                           <label class="control-label required">Quận/Huyện</label>
+                           <ng-select [items]="lstHuyen" required bindLabel="district_name" bindValue="district_id"
+                              [(ngModel)]="target.nhanHuyen" name="nhanHuyen" appendTo="body" (change)="getListWard()"
+                              [disabled]="dataRef.actionType === statusAction.detail">
+                           </ng-select>
+                        </div>
+                     </div>
+                     <div class="col-sm-3 col-md-3 col-xs-3 col-lg-3">
+                        <div class="form-group">
+                           <label class="control-label required">Xã/Phường</label>
+                           <ng-select [items]="lstXa" required bindLabel="ward_name" bindValue="ward_id"
+                              [(ngModel)]="target.nhanXa" name="nhanXa" appendTo="body"
+                              [disabled]="dataRef.actionType === statusAction.detail">
+                           </ng-select>
+                        </div>
+                     </div>
+                     <div class="col-sm-12 col-md-12 col-xs-12 col-lg-12">
+                        <div class="form-group">
+                           <label class="control-label required">Chi tiết địa chỉ</label>
+                           <input class="form-control" type="text" name="nhanDiaChi" [(ngModel)]="target.nhanDiaChi" 
+                           [disabled]="dataRef.actionType === statusAction.detail"/>
+                        </div>
+                     </div>
+                  </div>
+               </kendo-expansionpanel>
+            </div>
+         </div>
+      </nb-card-body>
+      <nb-card-footer class="text-right">
+         <div class="row">
+            <div class="col-sm-12 col-md-12 col-xs-12 col-lg-12 text-right">
+               <ngx-btn-submit [disabled]="frm.invalid"
+                  *ngIf="dataRef.actionType !== statusAction.detail"></ngx-btn-submit>&nbsp;&nbsp;
+               <ngx-btn-close (click)="closeDialog(true)"></ngx-btn-close>
+            </div>
+         </div>
+      </nb-card-footer>
+   </nb-card>
+</form>

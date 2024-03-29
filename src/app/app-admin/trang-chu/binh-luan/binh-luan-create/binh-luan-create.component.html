@@ -1,0 +1,77 @@
+<form #frm="ngForm" (ngSubmit)="save()">
+    <nb-card>
+        <nb-card-header class="nb-card-header">
+            <div class="row">
+                <div class="col-sm-12 col-md-12 col-xs-12 col-lg-12">
+                    <label class="text-uppercase" *ngIf="dataRef.actionType === statusAction.create">Thêm mới
+                        {{ titleHeader }}</label>
+                    <label class="text-uppercase" *ngIf="dataRef.actionType === statusAction.edit">Cập nhật
+                        {{ titleHeader }}</label>
+                    <label class="text-uppercase" *ngIf="dataRef.actionType === statusAction.detail">Chi tiết
+                        {{ titleHeader }}</label>
+                </div>
+            </div>
+        </nb-card-header>
+        <nb-card-body>
+            <div class="row">
+                <div class="col-sm-6 col-md-6 col-xs-6 col-lg-6">
+                    <div class="form-group">
+                        <label class="control-label required">Tên người tạo</label>
+                        <input type="text" placeholder="-- Tên người tạo --" class="form-control" name="fullName"
+                            [(ngModel)]="target.fullName" #fullName="ngModel" required
+                            [disabled]="dataRef.actionType === statusAction.detail" />
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6 col-xs-6 col-lg-6">
+                    <div class="form-group">
+                        <label class="control-label">Mã bình luận</label>
+                        <input type="text" placeholder="-- Mã bình luận --" class="form-control" name="commentCode"
+                            [(ngModel)]="target.commentCode" #commentCode="ngModel"
+                            [disabled]="dataRef.actionType === statusAction.detail" />
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6 col-xs-6 col-lg-6">
+                    <div class="form-group">
+                        <label class="control-label">Sản phẩm</label>
+                        <ng-select [items]="lstProduct" bindLabel="tenSanPham" bindValue="khoId" [(ngModel)]="target.khoId" name="khoId"
+                            appendTo="body" [disabled]="dataRef.actionType === statusAction.detail">
+                        </ng-select>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6 col-xs-6 col-lg-6">
+                    <div class="form-group">
+                        <label class="control-label">Bài viết</label>
+                        <ng-select [items]="lstAbout" bindLabel="tieuDe" bindValue="aboutId" [(ngModel)]="target.aboutId" name="aboutId"
+                            appendTo="body" [disabled]="dataRef.actionType === statusAction.detail">
+                        </ng-select>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6 col-xs-6 col-lg-6">
+                    <div class="form-group">
+                        <label class="control-label">Bình luân cha</label>
+                        <ng-select [items]="lstComment" bindLabel="fullName" bindValue="commentCode" [(ngModel)]="target.maCha"
+                            name="maCha" appendTo="body" [disabled]="dataRef.actionType === statusAction.detail">
+                        </ng-select>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-12 col-xs-12 col-lg-12">
+                    <div class="form-group">
+                        <label class="control-label">Nội dung</label>
+                        <textarea rows="2" type="text" placeholder="-- Nội dung --" class="form-control" name="noiDung"
+                            [(ngModel)]="target.noiDung" #noiDung="ngModel"
+                            [disabled]="dataRef.actionType === statusAction.detail"></textarea>
+                    </div>
+                </div>
+            </div>
+        </nb-card-body>
+        <nb-card-footer class="text-right">
+            <div class="row">
+                <div class="col-sm-12 col-md-12 col-xs-12 col-lg-12 text-right">
+                    <ngx-btn-submit [disabled]="frm.invalid"
+                        *ngIf="dataRef.actionType !== statusAction.detail"></ngx-btn-submit>&nbsp;&nbsp;
+                    <ngx-btn-close (click)="closeDialog(true)"></ngx-btn-close>
+                </div>
+            </div>
+        </nb-card-footer>
+    </nb-card>
+</form>

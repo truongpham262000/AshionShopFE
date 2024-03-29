@@ -1,0 +1,30 @@
+<nb-card>
+    <nb-card-header>
+      <div class="row">
+        <div class="col-sm-12 col-md-12 col-xs-12 col-lg-12">
+          <label style="font-family: Roboto;font-size: 1.1rem;">{{title}}</label>
+        </div>
+      </div>
+    </nb-card-header>
+    <nb-card-body>
+      <div class="row">
+        <div class="col-sm-12 col-md-12 col-xs-12 col-lg-12">
+          <i style="font-size: 1.7rem;" class="fas fa-{{icon}} {{color}}"></i>&nbsp;&nbsp;
+          <label *ngIf="!isAppend"
+            style="font-family: Roboto;font-size: 0.915rem;margin-top: auto;margin-bottom: auto;"
+            class="align-baseline">{{message}}</label>
+          <label *ngIf="isAppend" [innerHtml]="message"
+            style="font-family: Roboto;font-size: 0.915rem;margin-top: auto;margin-bottom: auto;"
+            class="align-baseline"></label>
+        </div>
+      </div>
+    </nb-card-body>
+    <nb-card-footer>
+      <div class="row">
+        <div class="col-sm-12 col-md-12 col-xs-12 col-lg-12 text-right">
+          <ngx-btn-confirm [text]="'Đồng ý'" (click)="confirm(true);"></ngx-btn-confirm>&nbsp;
+          <ngx-btn-close *ngIf="type === 1" [text]="'Hủy'" (click)="confirm(false);"></ngx-btn-close>
+        </div>
+      </div>
+    </nb-card-footer>
+</nb-card>

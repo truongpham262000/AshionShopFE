@@ -1,0 +1,230 @@
+<form #frm="ngForm" (ngSubmit)="save()">
+	<nb-card>
+		<nb-card-header class="nb-card-header">
+			<div class="row">
+				<div class="col-sm-12 col-md-12 col-xs-12 col-lg-12" style="text-transform: uppercase;">
+					<label *ngIf="dataRef.actionType === statusAction.create">Thêm mới {{ titleHeader }}</label>
+					<label *ngIf="dataRef.actionType === statusAction.edit">Cập nhật {{ titleHeader }}</label>
+					<label *ngIf="dataRef.actionType === statusAction.detail">Chi tiết {{ titleHeader }}</label>
+				</div>
+			</div>
+		</nb-card-header>
+		<nb-card-body>
+			<div class="row" style="overflow: auto !important;max-height: 450px !important;">
+				<div class="col-sm-3 col-md-3 col-xs-3 col-lg-3">
+					<div class="row">
+						<div class="col-sm-12 col-md-12 col-xs-12 col-lg-12">
+							<img [src]="target.image" alt="" style="width:100%;height:285px;border:solid 2px silver" id="image"
+								*ngIf="target.image">
+							<img src="../../../../../assets/ashion/img/product/details/product-2.jpg" alt=""
+								style="width:100%;height:285px;border:solid 2px silver" id="image" *ngIf="!target.image">
+						</div>
+						<div class="col-sm-12 col-md-12 col-xs-12 col-lg-12"
+							*ngIf="dataRef.actionType !== statusAction.detail">
+							<div class="input-group">
+								<input type="file" class="form-control" id="loadimage" (change)="handleUpload($event)" />
+								&nbsp;
+								<div style="display: flex; justify-content: center; align-items: center;">
+									<ngx-icon-delete title="Xóa ảnh" style="cursor: pointer;"
+										(click)="DeleteImg()"></ngx-icon-delete>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-8 col-md-8 col-xs-9 col-lg-9">
+					<div class="col-sm-12 col-md-12 col-xs-12 col-lg-12 d-flex p-0">
+						<div class="col-sm-6 col-md-6 col-xs-6 col-lg-6">
+							<div class="form-group">
+								<label class="control-label required">Tên sản phẩm</label>
+								<input type="text" class="form-control" [(ngModel)]="target.tenSanPham" name="tenSanPham"
+									#tenSanPham="ngModel" placeholder="--- Tên sản phẩm ---" maxlength="200" required
+									[disabled]="dataRef.actionType === statusAction.detail" required />
+							</div>
+						</div>
+						<div class="col-sm-6 col-md-6 col-xs-6 col-lg-6">
+							<div class="form-group">
+								<label class="control-label">Mã sản phẩm</label>
+								<input type="text" class="form-control" name="maSp" [(ngModel)]="target.maSp" #maSp="ngModel"
+									placeholder="--- Mã sản phẩm ---" readonly
+									[disabled]="dataRef.actionType === statusAction.detail" />
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-12 col-md-12 col-xs-12 col-lg-12 d-flex p-0">
+						<div class="col-sm-6 col-md-6 col-xs-6 col-lg-6">
+							<div class="form-group">
+								<label class="control-label">Mã giảm giá</label>
+								<input type="text" class="form-control" name="maGiamGia" [(ngModel)]="target.maGiamGia"
+									#maGiamGia="ngModel" placeholder="--- Mã giảm giá ---"
+									[disabled]="dataRef.actionType === statusAction.detail" />
+							</div>
+						</div>
+						<div class="col-sm-6 col-md-6 col-xs-6 col-lg-6">
+							<div class="form-group">
+								<label class="control-label">Cân nặng</label>
+								<input type="text" class="form-control" [(ngModel)]="target.canNang" name="canNang"
+									#canNang="ngModel" placeholder="--- Cân nặng ---" maxlength="200" currencyMask
+									[options]="currencyMaskConfig" [disabled]="dataRef.actionType === statusAction.detail" />
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-12 col-md-12 col-xs-12 col-lg-12 d-flex p-0">
+						<div class="col-sm-6 col-md-6 col-xs-6 col-lg-6">
+							<div class="form-group">
+								<label class="control-label required">Giá mới</label>
+								<input type="text" class="form-control" [(ngModel)]="target.giaSp" name="giaSp" #giaSp="ngModel"
+									placeholder="--- Giá mới ---" maxlength="200" currencyMask [options]="currencyMaskConfig"
+									[disabled]="dataRef.actionType === statusAction.detail" required />
+							</div>
+						</div>
+						<div class="col-sm-6 col-md-6 col-xs-6 col-lg-6">
+							<div class="form-group">
+								<label class="control-label">Giá cũ</label>
+								<input type="text" minlength="200" class="form-control" name="giaCu" [(ngModel)]="target.giaCu"
+									#giaCu="ngModel" currencyMask [options]="currencyMaskConfig" placeholder="--- Giá cũ ---"
+									[disabled]="dataRef.actionType === statusAction.detail" />
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-12 col-md-12 col-xs-12 col-lg-12 d-flex p-0">
+						<div class="col-sm-4 col-md-4 col-xs-4 col-lg-4">
+							<div class="form-group">
+								<label class="control-label">Số lượng</label>
+								<input type="text" class="form-control" [(ngModel)]="target.soLuong" name="soLuong"
+									#soLuong="ngModel" placeholder="--- Số lượng ---" maxlength="200" currencyMask
+									[options]="currencyMaskConfig" [disabled]="dataRef.actionType === statusAction.detail" />
+							</div>
+						</div>
+						<div class="col-sm-4 col-md-4 col-xs-4 col-lg-4">
+							<div class="form-group">
+								<label class="control-label">Đánh giá sao</label>
+								<input type="text" minlength="200" class="form-control" name="rateStar"
+									[(ngModel)]="target.rateStar" #rateStar="ngModel" currencyMask [options]="currencyMaskConfig"
+									placeholder="--- Đánh giá sao ---" [disabled]="dataRef.actionType === statusAction.detail" />
+							</div>
+						</div>
+						<div class="col-sm-4 col-md-4 col-xs-4 col-lg-4">
+							<div class="form-group">
+								<label class="control-label">Sản phẩm yêu thích</label>
+								<ng-select [items]="listWishlist" bindLabel="text" bindValue="value"
+									[(ngModel)]="target.sanPhamYeuThich" name="sanPhamYeuThich"
+									[disabled]="dataRef.actionType === statusAction.detail">
+								</ng-select>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-12 col-md-12 col-xs-12 col-lg-12 d-flex p-0">
+						<div class="col-sm-6 col-md-6 col-xs-6 col-lg-6">
+							<div class="form-group">
+								<label class="control-label">Sản phẩm cửa hàng</label>
+								<ng-select [items]="listCuaHang" bindLabel="tenSanPham" bindValue="shopId"
+									[(ngModel)]="target.shopId" name="shopId"
+									[disabled]="dataRef.actionType === statusAction.detail">
+								</ng-select>
+							</div>
+						</div>
+						<div class="col-sm-6 col-md-6 col-xs-6 col-lg-6">
+							<div class="form-group">
+								<label class="control-label required">Danh mục sản phẩm</label>
+								<ng-select [items]="listCategory" bindLabel="tenDanhMuc" bindValue="id"
+									[(ngModel)]="target.categoryId" name="categoryId" required
+									[disabled]="dataRef.actionType === statusAction.detail">
+								</ng-select>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-12 col-md-12 col-xs-12 col-lg-12 d-flex p-0">
+						<div class="col-sm-6 col-md-6 col-xs-6 col-lg-6">
+							<div class="form-group">
+								<label class="control-label">Màu sản phẩm</label>
+								<ng-select [items]="lstColor" bindLabel="nameState" bindValue="id"
+									[(ngModel)]="listColor" name="colorId" [multiple]="true"
+									[disabled]="dataRef.actionType === statusAction.detail">
+								</ng-select>
+							</div>
+						</div>
+						<div class="col-sm-6 col-md-6 col-xs-6 col-lg-6">
+							<div class="form-group">
+								<label class="control-label">Kích thước sản phẩm</label>
+								<ng-select [items]="lstSize" bindLabel="nameState" bindValue="id"
+									[(ngModel)]="listSize" name="sizeId" [multiple]="true"
+									[disabled]="dataRef.actionType === statusAction.detail">
+								</ng-select>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-12 col-md-12 col-xs-12 col-lg-12 d-flex p-0">
+						<div class="col-sm-4 col-md-4 col-xs-4 col-lg-4">
+							<div class="form-group">
+								<label class="control-label">Dài</label>
+								<input type="text" minlength="200" class="form-control" name="dai" [(ngModel)]="target.dai"
+									#dai="ngModel" currencyMask [options]="currencyMaskConfig" placeholder="--- Dài ---"
+									[disabled]="dataRef.actionType === statusAction.detail" />
+							</div>
+						</div>
+						<div class="col-sm-4 col-md-4 col-xs-4 col-lg-4">
+							<div class="form-group">
+								<label class="control-label">Rộng</label>
+								<input type="text" minlength="200" class="form-control" name="rong" [(ngModel)]="target.rong"
+									#rong="ngModel" currencyMask [options]="currencyMaskConfig" placeholder="--- Rộng ---"
+									[disabled]="dataRef.actionType === statusAction.detail" />
+							</div>
+						</div>
+						<div class="col-sm-4 col-md-4 col-xs-4 col-lg-4">
+							<div class="form-group">
+								<label class="control-label">Cao</label>
+								<input type="text" minlength="200" class="form-control" name="cao" [(ngModel)]="target.cao"
+									#cao="ngModel" currencyMask [options]="currencyMaskConfig" placeholder="--- Cao ---"
+									[disabled]="dataRef.actionType === statusAction.detail" />
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-12 col-md-12 col-xs-12 col-lg-12">
+						<div class="form-group">
+							<label class="control-label">Mô tả sản phẩm</label>
+							<textarea type="text" rows="2" class="form-control" name="moTaSanPham"
+								[(ngModel)]="target.moTaSanPham" #moTaSanPham="ngModel"
+								[disabled]="dataRef.actionType === statusAction.detail"></textarea>
+						</div>
+					</div>
+					<div class="col-sm-12 col-md-12 col-xs-12 col-lg-12">
+						<div class="form-group">
+							<label class="control-label">Chi tiết mô tả sản phẩm</label>
+							<textarea type="text" rows="2" class="form-control" name="chiTietSanPham"
+								[(ngModel)]="target.chiTietSanPham" #chiTietSanPham="ngModel"
+								[disabled]="dataRef.actionType === statusAction.detail"></textarea>
+						</div>
+					</div>
+					<div class="col-sm-12 col-md-12 col-xs-12 col-lg-12 d-flex p-0">
+						<div class="col-sm-6 col-md-6 col-xs-6 col-lg-6">
+							<div class="form-group">
+								<label class="control-label">Người tạo</label>
+								<input type="text" class="form-control" name="nguoiTao" placeholder="--- Người tạo ---"
+									[(ngModel)]="target.nguoiTao" #nguoiTao="ngModel" maxlength="200"
+									[disabled]="dataRef.actionType === statusAction.detail" />
+							</div>
+						</div>
+						<div class="col-sm-6 col-md-6 col-xs-6 col-lg-6">
+							<div class="form-group">
+								<label class="control-label required">Trạng thái</label>
+								<ng-select [items]="trangThai" bindLabel="text" bindValue="value" [(ngModel)]="target.status"
+									name="trangThai" [disabled]="dataRef.actionType === statusAction.detail">
+								</ng-select>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</nb-card-body>
+		<nb-card-footer class="text-right">
+			<div class="row">
+				<div class="col-sm-12 col-md-12 col-xs-12 col-lg-12 text-right">
+					<ngx-btn-submit [disabled]="frm.invalid"
+						*ngIf="dataRef.actionType !== statusAction.detail"></ngx-btn-submit>&nbsp;&nbsp;
+					<ngx-btn-close (click)="closeDialog(true)"></ngx-btn-close>
+				</div>
+			</div>
+		</nb-card-footer>
+	</nb-card>
+</form>

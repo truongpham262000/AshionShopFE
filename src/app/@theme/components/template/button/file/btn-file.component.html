@@ -1,0 +1,8 @@
+<ng-container *ngIf="multiple; else elseTemplate">
+    <input type="file" id="{{idFile}}" hidden multiple>
+    <label class="label-upload-file" for="{{idFile}}">{{lbl.file}}</label>
+</ng-container>
+<ng-template #elseTemplate>
+    <input type="file" id="{{idFile}}" hidden>
+    <label class="label-upload-file" for="{{idFile}}">{{lbl.file}}</label>
+</ng-template>

@@ -1,0 +1,91 @@
+<nb-layout>
+    <nb-layout-column style='padding: 0;background: #fff;'>
+        <form class="pt-3" #frm="ngForm" (ngSubmit)="save()">
+            <nb-card>
+                <nb-card-body>
+                    <div class="container-scroller">
+                        <div class="container-fluid page-body-wrapper full-page-wrapper">
+                            <div class="content-wrapper d-flex align-items-center auth px-0">
+                                <div class="row w-100 mx-0">
+                                    <div class="col-lg-4 mx-auto">
+                                        <div class="auth-form-light text-left py-5 px-4 px-sm-5">
+                                            <div class="brand-logo">
+                                                <img src="../../../../assets/vendorscss/images/logo.svg" alt="logo">
+                                            </div>
+                                            <h4><strong>Tạo mới tại đây?</strong></h4>
+                                            <h6 class="font-weight-light">Đẵng ký dễ dàng. nó sẽ cho bạn cảm giác tuyệt vời.
+                                            </h6>
+                                            <div class="form-group">
+                                                <label class="form-control_123-label required">Tài khoản</label>
+                                                <input type="text" class="form-control_123 form-control_123-lg"
+                                                    id="exampleInputUsername1" placeholder="Tài khoản" name="userName"
+                                                    [(ngModel)]="target.userName" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="form-control_123-label required">Email</label>
+                                                <input type="email" [(ngModel)]="target.email"
+                                                    class="form-control_123 form-control_123-lg" id="exampleInputEmail1"
+                                                    placeholder="Email" name="email" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="form-control_123-label required">Số điện thoại</label>
+                                                <input type="text" class="form-control_123 form-control_123-lg"
+                                                    placeholder="Số điện thoại" name="phoneNumber"
+                                                    [(ngModel)]="target.phoneNumber" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="form-control_123-label required">Họ và tên</label>
+                                                <input type="text" class="form-control_123 form-control_123-lg" placeholder="Họ và tên"
+                                                    name="fullName" [(ngModel)]="target.fullName" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="form-control_123-label">Chọn tỉnh</label>
+                                                <kendo-dropdowntree kendoDropDownTreeExpandable
+                                                    [kendoDropDownTreeHierarchyBinding]="lstData" textField="province_name"
+                                                    valueField="province_id" [(ngModel)]="maTinhData"
+                                                    style="padding: 5px 0 !important;background-color: unset !important;"
+                                                    [filterable]="true" placeholder="-- Chọn tỉnh --" name="maTinh">
+                                                </kendo-dropdowntree>
+                                            </div>
+                                            <div class="form-group mb-4">
+                                                <label class="form-control_123-label required" for="loginPassword">Mật khẩu</label>
+                                                <div class="input-group" id="show_hide_password loginPassword"
+                                                    style="align-items: center;">
+                                                    <input class="form-control_123" [type]="setTypeInput" name="passWord"
+                                                        [(ngModel)]="target.passWord" required>
+                                                    <div class="input-group-addon" (click)="setEyePassword()" style="padding: 15px 10px;background-color: darkgrey;border-bottom-right-radius: 5px;
+                                                            border-top-right-radius: 5px;">
+                                                        <a><i class="fa"
+                                                                [ngClass]="{'fa-eye': showPass === false,'fa-eye-slash': showPass === true}"
+                                                                aria-hidden="true"></i></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="mb-4">
+                                                <div class="form-check">
+                                                    <label class="form-check-label text-muted">
+                                                        <input type="checkbox" class="form-check-input">
+                                                        Tôi đồng ý với tất cả chính sách của Shop.
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="mt-3">
+                                                <button type="submit" [disabled]="frm.invalid"
+                                                    class="btn_123 btn_123-block btn_123-primary btn_123-lg font-weight-medium auth-form-btn_123">Đăng
+                                                    ký</button>
+                                            </div>
+                                            <div class="text-center mt-4 font-weight-light">
+                                                Bạn đã có tài khoản? <a href="/login" class="text-primary">Đăng nhập</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </nb-card-body>
+                <nb-card-footer></nb-card-footer>
+            </nb-card>
+        </form>
+    </nb-layout-column>
+</nb-layout>

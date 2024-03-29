@@ -1,0 +1,132 @@
+<form #frm="ngForm" (ngSubmit)="save()">
+    <nb-card>
+        <nb-card-header class="nb-card-header">
+            <div class="row">
+                <div class="col-sm-12 col-md-12 col-xs-12 col-lg-12">
+                    <label class="text-uppercase" *ngIf="dataRef.actionType === statusAction.create">Thêm mới {{ titleHeader }}</label>
+                    <label class="text-uppercase" *ngIf="dataRef.actionType === statusAction.edit">Cập nhật {{ titleHeader }}</label>
+                    <label class="text-uppercase" *ngIf="dataRef.actionType === statusAction.detail">Chi tiết {{ titleHeader }}</label>
+                </div>
+            </div>
+        </nb-card-header>
+        <nb-card-body>
+            <div class="row">
+                <div class="col-sm-6 col-md-6 col-xs-6 col-lg-6">
+                    <div class="form-group">
+                        <label class="control-label required">Tên tài khoản</label>
+                        <input type="text" class="form-control" [(ngModel)]="target.userName" name="userName"
+                            maxlength="200" placeholder="-- Tên tài khoản --" required [disabled]="dataRef.actionType !== statusAction.create" required />
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6 col-xs-6 col-lg-6">
+                    <div class="form-group">
+                        <label class="form-control-label required" for="loginPassword">Mật khẩu</label>
+                        <div class="input-group" id="show_hide_password loginPassword" style="align-items: center;">
+                            <input class="form-control" [type]="setTypeInput" name="passWord" [(ngModel)]="target.passWord" required>
+                            <div class="input-group-addon" (click)="setEyePassword()"
+                                style="padding: 9px 10px;background-color: darkgrey;border-bottom-right-radius: 5px;
+                                border-top-right-radius: 5px;">
+                                <a><i class="fa" [ngClass]="{'fa-eye': showPass === false,'fa-eye-slash': showPass === true}"
+                                        aria-hidden="true"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6 col-xs-6 col-lg-6">
+                    <div class="form-group">
+                        <label class="control-label required">Họ và tên</label>
+                        <input type="text" placeholder="-- Họ và tên --" class="form-control" name="fullName"
+                            [(ngModel)]="target.fullName" #fullName="ngModel" required
+                            [disabled]="dataRef.actionType === statusAction.detail" />
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6 col-xs-6 col-lg-6">
+                    <div class="form-group">
+                        <label class="control-label">Số điện thoại</label>
+                        <input type="text" class="form-control" [(ngModel)]="target.phoneNumber" name="phoneNumber" maxlength="10"
+                            [disabled]="dataRef.actionType === statusAction.detail" placeholder="-- Số điện thoại --" required />
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6 col-xs-6 col-lg-6">
+                    <div class="form-group">
+                        <label class="control-label">Email</label>
+                        <input type="email" class="form-control" name="email" [(ngModel)]="target.email"
+                            [disabled]="dataRef.actionType === statusAction.detail" placeholder="-- Email --" />
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6 col-xs-6 col-lg-6">
+                    <div class="form-group">
+                        <label class="control-label">Người tạo</label>
+                        <input type="text" class="form-control" name="nguoiTao" placeholder="-- Người tạo --"
+                            [(ngModel)]="target.nguoiTao" #nguoiTao="ngModel" maxlength="200"
+                            [disabled]="dataRef.actionType === statusAction.detail" />
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-12 col-xs-12 col-lg-12 d-flex p-0">
+                    <div class="col-sm-6 col-md-6 col-xs-6 col-lg-6">
+                        <div class="form-group">
+                            <label class="control-label">Giới tính</label>
+                            <ng-select [items]="lstGenDer" bindLabel="text" bindValue="value" [(ngModel)]="target.gender" name="gender"
+                                appendTo="body" [disabled]="dataRef.actionType === statusAction.detail">
+                            </ng-select>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-6 col-xs-6 col-lg-6">
+                        <div class="form-group">
+                            <label class="control-label required">Tỉnh</label>
+                            <ng-select [items]="lstTinh" required bindLabel="province_name" bindValue="province_id"
+                                [(ngModel)]="target.maTinh" name="maTinh" appendTo="body" (change)="getListDistrict()"
+                                [disabled]="dataRef.actionType === statusAction.detail" required>
+                            </ng-select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-12 col-xs-12 col-lg-12 d-flex p-0">
+                    <div class="col-sm-6 col-md-6 col-xs-6 col-lg-6">
+                        <div class="form-group">
+                            <label class="control-label required">Huyện</label>
+                            <ng-select [items]="lstHuyen" required bindLabel="district_name" bindValue="district_id"
+                                [(ngModel)]="target.maHuyen" name="maHuyen" appendTo="body" (change)="getListWard()"
+                                [disabled]="dataRef.actionType === statusAction.detail">
+                            </ng-select>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-6 col-xs-6 col-lg-6">
+                        <div class="form-group">
+                            <label class="control-label required">Xã</label>
+                            <ng-select [items]="lstXa" required bindLabel="ward_name" bindValue="ward_id" [(ngModel)]="target.maXa"
+                                name="maXa" appendTo="body" [disabled]="dataRef.actionType === statusAction.detail">
+                            </ng-select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6 col-xs-6 col-lg-6">
+                    <div class="form-group">
+                        <label class="control-label">Địa chỉ</label>
+                        <input type="text" class="form-control" name="address" placeholder="-- Địa chỉ --"
+                            [(ngModel)]="target.address" #address="ngModel" maxlength="200"
+                            [disabled]="dataRef.actionType === statusAction.detail" />
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6 col-xs-6 col-lg-6">
+                    <div class="form-group">
+                        <label class="control-label">Kích hoạt tài khoản</label>
+                        <ng-select [items]="listActive" bindLabel="text" bindValue="value"
+                            [(ngModel)]="target.active" name="active" appendTo="body"
+                            [disabled]="dataRef.actionType === statusAction.detail">
+                        </ng-select>
+                    </div>
+                </div>
+            </div>
+        </nb-card-body>
+        <nb-card-footer class="text-right">
+            <div class="row">
+                <div class="col-sm-12 col-md-12 col-xs-12 col-lg-12 text-right">
+                    <ngx-btn-submit [disabled]="frm.invalid"
+                        *ngIf="dataRef.actionType !== statusAction.detail"></ngx-btn-submit>&nbsp;&nbsp;
+                    <ngx-btn-close (click)="closeDialog(true)"></ngx-btn-close>
+                </div>
+            </div>
+        </nb-card-footer>
+    </nb-card>
+</form>

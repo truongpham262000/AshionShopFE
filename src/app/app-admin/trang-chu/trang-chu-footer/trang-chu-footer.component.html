@@ -1,0 +1,81 @@
+<nb-card>
+    <nb-card-header class="nb-card-header">
+        <div class="row">
+            <div class="col-sm-12 col-md-12 col-xs-12 col-lg-12">
+                <h6 class="title-header" style="text-transform: uppercase;">Design Footer Shop</h6>
+            </div>
+        </div>
+    </nb-card-header>
+    <nb-card-body>
+        <div class="row">
+            <div class="col-sm-12 col-md-12 col-xs-12 col-lg-12">
+                <div class="input-group">
+                    <ngx-btn-add data-toggle="tooltip" title="Thêm mới"
+                        (click)="openCreateDialog()"></ngx-btn-add>&nbsp;&nbsp;
+                    <input type="text" class="form-control" [(ngModel)]="pageModel.search" (keyup.enter)="loadData()" placeholder="Nhập nội dung tìm kiếm"
+                        name="seach">&nbsp;&nbsp;
+                    <ngx-btn-refresh (click)="resetTextSearch()"></ngx-btn-refresh>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="row" style="overflow: auto;">
+            <div class="col-sm-12 col-md-12 col-xs-12 col-lg-12">
+                <table class="table table-bordered table-hover table-fixed">
+                    <thead class="bg-primary text-uppercase text-white">
+                        <tr>
+                            <th class="text-center align-middle" style="width: 50px;">STT</th>
+                            <th class="text-center align-middle" style="min-width: 100px;">Ảnh</th>
+                            <th class="text-center align-middle" style="min-width: 300px;">Nội dung</th>
+                            <th class="text-center align-middle" style="min-width: 150px;">Trạng thái</th>
+                            <th class="text-center align-middle" style="min-width: 150px;">Hành động</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of target?.data;let i = index">
+                            <td class="text-center align-middle">
+                                {{ ( pageModel.currentPage - 1 ) * pageModel.pageSize + i + 1 }}
+                            </td>
+                            <td class="align-middle text-center">
+                                <img [src]="item.logoImage" width="100px" height="100px" alt="No image...">
+                            </td>
+                            <td class="align-middle">{{ item.contentFooter }}</td>
+                            <td class="text-center align-middle"
+                                [ngClass]="{'text-success': item.trangThai, 'text-danger': item.trangThai === 0}">
+                                {{ item.trangThai === 1? 'Đang sử dụng':'Không sử dụng' }}
+                            </td>
+                            <td class="text-center align-middle">
+                                <ngx-icon-info title="Xem chi tiết" style="cursor: pointer;"
+                                    (click)="openDetailDialog(item.id)"></ngx-icon-info>&nbsp;&nbsp;
+                                <ngx-icon-edit title="Cập nhật" style="cursor: pointer;"
+                                    (click)="openEditDialog(item.id)"></ngx-icon-edit>&nbsp;&nbsp;
+                                <ngx-icon-delete title="Xóa" style="cursor: pointer;"
+                                    (click)="openDeleteDialog(item.id, item.phoneNumber)"></ngx-icon-delete>
+                            </td>
+                        </tr>
+                        <tr *ngIf="target?.data?.length === 0">
+                            <td colspan="5">Không có dữ liệu.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </nb-card-body>
+    <nb-card-footer style="margin-bottom: 150px;">
+        <div class="row">
+            <div class="col-md-4 col-sm-4 col-xs-4 col-lg-4">
+                <div style="float: left;">
+                    Tổng số bản ghi: {{ target?.totalRecode > 0 ? target?.totalRecode : 0 }}
+                </div>
+            </div>
+            <div class="col-md-8 col-sm-8 col-xs-8 col-lg-8">
+                <div style="float: right;">
+                    <ngx-pagination (pageChange)="pageModel.currentPage = $event;loadData()"
+                        (pageSize)="pageModel.pageSize = $event;loadData()" [currentPage]="pageModel.currentPage"
+                        [totalPages]="target.totalPage">
+                    </ngx-pagination>
+                </div>
+            </div>
+        </div>
+    </nb-card-footer>
+</nb-card>
